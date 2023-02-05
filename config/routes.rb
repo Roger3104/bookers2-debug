@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
+    get "daily_posts" => "users#daily_posts" #投稿本検索のため追記
   end
 
   resources :books, only: [:index,:show,:new,:edit,:create,:destroy,:update] do
