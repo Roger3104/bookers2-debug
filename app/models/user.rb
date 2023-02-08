@@ -19,11 +19,11 @@ class User < ApplicationRecord
   # 一覧画面で使う
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
-  
+
   #chat
-  has_many :user_rooms, dependent: :destroy
+  has_many :user_rooms, dependent: :destroy #中間テーブル
   has_many :chats, dependent: :destroy
-  has_many :rooms, through: :user_rooms
+  has_many :rooms, through: :user_rooms #中間テーブルを使った際に記載
 
   # フォローしたときの処理
   def follow(user_id)
@@ -45,7 +45,7 @@ class User < ApplicationRecord
       end
       profile_image.variant(resize_to_limit: [width, height]).processed
   end
-  
+
   # 検索方法分岐
   def self.search_for(content, method)
     if method == 'perfect'
