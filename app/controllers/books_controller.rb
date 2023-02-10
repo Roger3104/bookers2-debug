@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  before_action :authenticate_user!
   before_action :correct_user, only: [:edit, :update]
 
   def show
@@ -6,9 +7,8 @@ class BooksController < ApplicationController
     @user = @book.user
     @new_book = Book.new
     @book_comment = BookComment.new
-    @book_views = Book.find(params[:id])
-    unless ViewCount.find_by(user_id: current_user.id, book_id: @book_views.id)
-      current_user.view_counts.create(book_id: @book_views.id)
+    unless ViewCount.find_by(user_id: current_user.id, book_id: @book.id)
+      current_user.view_counts.create(book_id: @book.id)
     end
   end
 

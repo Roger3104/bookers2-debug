@@ -21,7 +21,7 @@
         <td>
           <p>コメント数：<%= book.book_comments.count %></p>
         </td>
-        <td><p class="view-count">閲覧数: <%= book_views.view_counts.count %></p></td>
+        <td><%= render "book_comments/counter", book: book %></td>
       </tr>
     <% end %>
   </tbody>

@@ -4,19 +4,12 @@ class BookCommentsController < ApplicationController
       @book = Book.find(params[:book_id])
       @comment = current_user.book_comments.new(book_params)
       @comment.book_id = @book.id
-      if @comment.save
-        flash.now[:notice] = 'コメントを投稿しました'
-        render :book_comments
-      else
-        render 'books/show'
-      end
+      @comment.save
     end
 
     def destroy
-      BookComment.find(params[:id]).destroy
-      flash.now[:alert] = '投稿を削除しました'
-      @book = Book.find(params[:book_id])
-      render :book_comments
+      @comment = BookComment.find(params[:id])
+      @comment.destroy
     end
 
   private
