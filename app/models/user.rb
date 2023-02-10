@@ -25,6 +25,9 @@ class User < ApplicationRecord
   has_many :chats, dependent: :destroy
   has_many :rooms, through: :user_rooms #中間テーブルを使った際に記載
 
+  # view counts
+  has_many :view_counts, dependent: :destroy
+
   # フォローしたときの処理
   def follow(user_id)
     relationships.create(followed_id: user_id)
