@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   get "search" => "searches#search"
 
   resources :chats, only: [:show, :create]
-  resources :groups, except: [:destroy] #groups
+  resources :groups do #groups
+    get "join" => "groups#join" 
+  end
 end
 

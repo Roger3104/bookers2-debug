@@ -9,12 +9,12 @@ class BookCommentsController < ApplicationController
       render 'error'  # app/views/book_comments/error.js.erbを参照する ※要件外
     end
     # app/views/book_comments/create.js.erbを参照する
-  end
+    end
 
   def destroy
     @book = Book.find(params[:book_id])
-    book_comment = @book.book_comments.find(params[:id])
-    book_comment.destroy
+    @book_comment = @book.book_comments.find(params[:id])
+    @book_comment.destroy
     # app/views/book_comments/destroy.js.erbを参照する
   end
 
