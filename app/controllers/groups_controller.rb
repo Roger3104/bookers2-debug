@@ -10,6 +10,7 @@ class GroupsController < ApplicationController
   def show
     @book = Book.new
     @group = Group.find(params[:id])
+    @groups = Group.all
   end
 
   def new
@@ -40,7 +41,7 @@ class GroupsController < ApplicationController
 
   def destroy #グループ脱退のためのアクション
     @group = Group.find(params[:id])
-    @group.user.delete(current_user). #current_userは、@group.usersから消されるという記述。
+    @group.users.delete(current_user) #current_userは、@group.usersから消されるという記述。
     redirect_to groups_path
   end
 
