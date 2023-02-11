@@ -27,6 +27,9 @@ class User < ApplicationRecord
 
   # view counts
   has_many :view_counts, dependent: :destroy
+  
+  #グループ
+  has_many :group_users
 
   # フォローしたときの処理
   def follow(user_id)
